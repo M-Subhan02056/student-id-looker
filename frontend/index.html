@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student ID Lookup System - GHL</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-user-graduate"></i>
+                <h1>Student ID Lookup System</h1>
+            </div>
+            <p class="subtitle">Find student information using their Student ID</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search Section -->
+            <section class="search-section card">
+                <h2><i class="fas fa-search"></i> Search Student</h2>
+                <div class="search-form">
+                    <div class="input-group">
+                        <label for="studentId">
+                            <i class="fas fa-id-card"></i> Student ID
+                        </label>
+                        <input 
+                            type="text" 
+                            id="studentId" 
+                            placeholder="Enter student ID (e.g., STU-2023-001)"
+                            autocomplete="off"
+                        >
+                        <small class="input-hint">Enter the student ID from the GHL custom field</small>
+                    </div>
+                    <button id="searchBtn" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Search Student
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary">
+                        <i class="fas fa-eraser"></i> Clear
+                    </button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section card">
+                <h2><i class="fas fa-user-circle"></i> Student Information</h2>
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Searching for student...</p>
+                </div>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+                
+                <div id="studentInfo" class="student-info" style="display: none;">
+                    <div class="student-header">
+                        <div class="student-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="student-title">
+                            <h3 id="studentName">John Doe</h3>
+                            <span id="studentStatus" class="status-badge status-active">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label><i class="fas fa-id-card"></i> Student ID</label>
+                            <p id="infoStudentId">STU-2023-001</p>
+                        </div>
+                        <div class="info-item">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <p id="infoEmail">john.doe@example.com</p>
+                        </div>
+                        <div class="info-item">
+                            <label><i class="fas fa-phone"></i> Phone</label>
+                            <p id="infoPhone">+1 (555) 123-4567</p>
+                        </div>
+                        <div class="info-item">
+                            <label><i class="fas fa-calendar"></i> Created On</label>
+                            <p id="infoCreatedOn">2023-10-15</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item full-width">
+                        <label><i class="fas fa-map-marker-alt"></i> Address</label>
+                        <p id="infoAddress">123 Main St, City, State, Country</p>
+                    </div>
+
+                    <div class="tags-section">
+                        <label><i class="fas fa-tags"></i> Tags</label>
+                        <div id="infoTags" class="tags-container">
+                            <span class="tag">Student</span>
+                            <span class="tag">Enrolled</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="noResults" class="no-results" style="display: none;">
+                    <i class="fas fa-user-slash"></i>
+                    <h3>No Student Found</h3>
+                    <p>No student was found with the provided Student ID.</p>
+                    <p class="hint">Please check the ID and try again.</p>
+                </div>
+            </section>
+
+            <!-- Recent Students Section -->
+            <section class="recent-section card">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> Recent Students</h2>
+                    <button id="refreshStudents" class="btn btn-icon">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                <div id="recentLoading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading students...</p>
+                </div>
+                <div id="recentError" class="error-message" style="display: none;"></div>
+                <div id="recentStudents" class="students-list" style="display: none;"></div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Student ID Lookup System &copy; 2024 | Connected to GHL</p>
+            <p class="status">
+                <i class="fas fa-circle status-connected"></i>
+                <span id="apiStatus">Connected to API</span>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
